@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Lançar Notas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Lançar Notas
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <h5>{{ turma_disciplina.disciplina.nome }}</h5>
+                    <p class="mb-0">
+                        <strong>Turma:</strong> {{ turma_disciplina.turma.nome }} | 
+                        <strong>Série:</strong> {{ turma_disciplina.turma.get_serie_display }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avaliações -->
+    <div class="row">
+        <div class="col-12">
+            <h4 class="text-white mb-3">
+                <i class="fas fa-clipboard-list me-2"></i>Avaliações
+            </h4>
+        </div>
+        
+        {% if avaliacoes %}
+            {% for avaliacao in avaliacoes %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">{{ avaliacao.nome }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>Tipo:</strong> {{ avaliacao.get_tipo_display }} |
+                                <strong>Bimestre:</strong> {{ avaliacao.bimestre }}º |
+                                <strong>Peso:</strong> {{ avaliacao.peso }}
+                            </p>
+                            <p class="mb-2">
+                                <strong>Data:</strong> {{ avaliacao.data|date:"d/m/Y" }}
+                            </p>
+                            <p class="text-muted mb-3">{{ avaliacao.descricao }}</p>
+                            <a href="#" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit me-1"></i>Editar Notas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-info-circle fa-2x text-muted mb-3"></i>
+                        <p class="text-muted mb-3">Nenhuma avaliação cadastrada para esta disciplina</p>
+                        <a href="/admin/notas/avaliacao/add/" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Criar Nova Avaliação
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Lista de Alunos -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4 class="text-white mb-3">
+                <i class="fas fa-users me-2"></i>Alunos da Turma
+            </h4>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {% if alunos %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for aluno in alunos %}
+                                        <tr>
+                                            <td>{{ aluno.get_full_name }}</td>
+                                            <td>{{ aluno.email }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-info-circle fa-2x text-muted mb-3"></i>
+                            <p class="text-muted mb-0">Nenhum aluno matriculado nesta turma</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

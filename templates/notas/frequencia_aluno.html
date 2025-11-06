@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Frequência{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-calendar-check me-2"></i>Minha Frequência
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">Acompanhe suas presenças e ausências</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frequências -->
+    <div class="row">
+        <div class="col-12">
+            {% if frequencias %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-book me-2"></i>Disciplina</th>
+                                        <th><i class="fas fa-calendar me-2"></i>Data</th>
+                                        <th><i class="fas fa-check-circle me-2"></i>Status</th>
+                                        <th><i class="fas fa-comment me-2"></i>Observação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for freq in frequencias %}
+                                        <tr>
+                                            <td>
+                                                <strong>{{ freq.turma_disciplina.disciplina.nome }}</strong>
+                                            </td>
+                                            <td>{{ freq.data|date:"d/m/Y" }}</td>
+                                            <td>
+                                                {% if freq.presente %}
+                                                    <span class="badge bg-success">
+                                                        <i class="fas fa-check me-1"></i>Presente
+                                                    </span>
+                                                {% else %}
+                                                    <span class="badge bg-danger">
+                                                        <i class="fas fa-times me-1"></i>Ausente
+                                                    </span>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ freq.justificativa|default:"-" }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Nenhum registro de frequência encontrado</h5>
+                        <p class="text-muted">Suas presenças serão registradas pelos professores</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard Aluno{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            {% if user.perfil.foto %}
+                                <img src="{{ user.perfil.foto.url }}" alt="Foto" class="rounded-circle" width="80" height="80" style="object-fit: cover;">
+                            {% else %}
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-user fa-2x text-white"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h2 class="mb-1">Olá, {{ user.get_full_name|default:user.username }}!</h2>
+                            <p class="text-muted mb-0">
+                                <i class="fas fa-graduation-cap me-2"></i>{{ user.perfil.get_tipo_display }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <a href="{% url 'minhas_notas' %}" class="text-decoration-none">
+                <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <i class="fas fa-star"></i>
+                    <h3>Minhas Notas</h3>
+                    <p style="color: rgba(255,255,255,0.8);">Ver Boletim Completo</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'frequencia_aluno' %}" class="text-decoration-none">
+                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Frequência</h3>
+                    <p style="color: rgba(255,255,255,0.8);">Ver Presenças</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'perfil' %}" class="text-decoration-none">
+                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                    <i class="fas fa-user-edit"></i>
+                    <h3>Meu Perfil</h3>
+                    <p style="color: rgba(255,255,255,0.8);">Editar Informações</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Minhas Turmas -->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-white mb-4">
+                <i class="fas fa-users me-2"></i>Minhas Turmas
+            </h3>
+        </div>
+        {% if turmas %}
+            {% for turma in turmas %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-users me-2"></i>{{ turma.nome }}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>Série:</strong> {{ turma.get_serie_display }}
+                            </p>
+                            <p class="mb-2">
+                                <strong>Turno:</strong> {{ turma.get_turno_display }}
+                            </p>
+                            <p class="mb-3">
+                                <strong>Ano Letivo:</strong> {{ turma.ano_letivo }}
+                            </p>
+                            <a href="{% url 'turma_detalhe' turma.pk %}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye me-1"></i>Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Você ainda não está matriculado em nenhuma turma</h5>
+                        <p class="text-muted">Entre em contato com a secretaria</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ turma.nome }} - Detalhes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-users me-2"></i>{{ turma.nome }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Série:</strong> {{ turma.get_serie_display }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><strong>Turno:</strong> {{ turma.get_turno_display }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><strong>Ano Letivo:</strong> {{ turma.ano_letivo }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disciplinas da Turma -->
+    <div class="row">
+        <div class="col-12">
+            <h4 class="text-white mb-3">
+                <i class="fas fa-book me-2"></i>Disciplinas
+            </h4>
+        </div>
+        {% if disciplinas %}
+            {% for td in disciplinas %}
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-book me-2" style="color: {{ td.disciplina.cor|default:'#2563eb' }};"></i>
+                                {{ td.disciplina.nome }}
+                            </h5>
+                            {% if td.professor %}
+                                <p class="mb-2">
+                                    <strong>Professor:</strong> {{ td.professor.get_full_name }}
+                                </p>
+                            {% endif %}
+                            <p class="text-muted mb-0">
+                                <small>Carga horária: {{ td.disciplina.carga_horaria }}h/semana</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-info-circle fa-2x text-muted mb-3"></i>
+                        <p class="text-muted mb-0">Nenhuma disciplina cadastrada para esta turma</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

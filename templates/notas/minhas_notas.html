@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Minhas Notas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-star me-2"></i>Minhas Notas
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">Acompanhe seu desempenho em todas as disciplinas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notas por Bimestre -->
+    {% for bimestre, notas in notas_por_bimestre.items %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="text-white mb-3">
+                    <i class="fas fa-calendar-alt me-2"></i>{{ bimestre }}º Bimestre
+                </h4>
+            </div>
+            
+            {% if notas %}
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th><i class="fas fa-book me-2"></i>Disciplina</th>
+                                            <th><i class="fas fa-clipboard-list me-2"></i>Avaliação</th>
+                                            <th><i class="fas fa-calendar me-2"></i>Data</th>
+                                            <th><i class="fas fa-star me-2"></i>Nota</th>
+                                            <th><i class="fas fa-weight me-2"></i>Peso</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for nota in notas %}
+                                            <tr>
+                                                <td>
+                                                    <strong style="color: {{ nota.avaliacao.turma_disciplina.disciplina.cor|default:'#2563eb' }};">
+                                                        {{ nota.avaliacao.turma_disciplina.disciplina.nome }}
+                                                    </strong>
+                                                </td>
+                                                <td>{{ nota.avaliacao.nome }}</td>
+                                                <td>{{ nota.avaliacao.data|date:"d/m/Y" }}</td>
+                                                <td>
+                                                    {% if nota.valor >= 7 %}
+                                                        <span class="badge bg-success fs-6">{{ nota.valor }}</span>
+                                                    {% elif nota.valor >= 5 %}
+                                                        <span class="badge bg-warning fs-6">{{ nota.valor }}</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger fs-6">{{ nota.valor }}</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ nota.avaliacao.peso }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-info-circle fa-2x text-muted mb-3"></i>
+                            <p class="text-muted mb-0">Nenhuma nota lançada para este bimestre</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

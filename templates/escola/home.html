@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Início - Sistema Escolar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-3 fw-bold text-white mb-4">
+                Bem-vindo ao <br>
+                <span style="color: #fbbf24;">Sistema Escolar</span>
+            </h1>
+            <p class="lead text-white mb-4">
+                Plataforma completa de gestão educacional para alunos, professores e administradores.
+                Acompanhe notas, frequência e muito mais!
+            </p>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'registro' %}" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-user-plus me-2"></i>Cadastre-se Agora
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
+                </a>
+            {% else %}
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-chart-line me-2"></i>Ir para Dashboard
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-lg-6 text-center">
+            <div class="p-5">
+                <i class="fas fa-school" style="font-size: 15rem; color: rgba(255, 255, 255, 0.8);"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-users" style="font-size: 4rem; color: #2563eb;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold">Para Alunos</h4>
+                    <p class="card-text text-muted">
+                        Acompanhe suas notas, frequência e desempenho em todas as disciplinas.
+                    </p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Visualizar notas por bimestre</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Controle de frequência</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Histórico completo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-chalkboard-teacher" style="font-size: 4rem; color: #7c3aed;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold">Para Professores</h4>
+                    <p class="card-text text-muted">
+                        Gerencie suas turmas, lance notas e acompanhe o progresso dos alunos.
+                    </p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Lançamento de notas</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Controle de presença</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Gestão de turmas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-cogs" style="font-size: 4rem; color: #10b981;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold">Para Administradores</h4>
+                    <p class="card-text text-muted">
+                        Controle total do sistema educacional com relatórios e estatísticas.
+                    </p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Gestão de usuários</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Relatórios completos</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Configurações globais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-book" style="color: #2563eb;"></i>
+                <h3>100%</h3>
+                <p>Digital</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-lock" style="color: #7c3aed;"></i>
+                <h3>Seguro</h3>
+                <p>Sistema Protegido</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-mobile-alt" style="color: #10b981;"></i>
+                <h3>Responsivo</h3>
+                <p>Acesso em Qualquer Dispositivo</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-chart-line" style="color: #f59e0b;"></i>
+                <h3>Eficiente</h3>
+                <p>Gestão Completa</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
