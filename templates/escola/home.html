@@ -1,92 +1,172 @@
 {% extends 'base.html' %}
 
-{% block title %}Início - Sistema Escolar{% endblock %}
+{% block title %}Início - EduSystem{% endblock %}
 
 {% block content %}
 <div class="container">
     <!-- Hero Section -->
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 fade-in-up" style="min-height: 60vh;">
         <div class="col-lg-6">
-            <h1 class="display-3 fw-bold text-white mb-4">
-                Bem-vindo ao <br>
-                <span style="color: #fbbf24;">Sistema Escolar</span>
+            <div class="mb-4">
+                <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1rem;">
+                    <i class="fas fa-rocket me-2"></i>Plataforma Educacional Moderna
+                </span>
+            </div>
+            <h1 class="display-2 fw-bold mb-4" style="line-height: 1.2;">
+                Transforme sua
+                <span style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                    Educação
+                </span>
             </h1>
-            <p class="lead text-white mb-4">
-                Plataforma completa de gestão educacional para alunos, professores e administradores.
-                Acompanhe notas, frequência e muito mais!
+            <p class="lead mb-4" style="color: var(--text-secondary); font-size: 1.25rem;">
+                Sistema completo de gestão escolar com tecnologia de ponta. 
+                Acompanhe notas, frequência e desempenho em tempo real.
             </p>
             {% if not user.is_authenticated %}
-                <a href="{% url 'registro' %}" class="btn btn-primary btn-lg me-3">
-                    <i class="fas fa-user-plus me-2"></i>Cadastre-se Agora
-                </a>
-                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">
-                    <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
-                </a>
+                <div class="d-flex gap-3 mb-4">
+                    <a href="{% url 'registro' %}" class="btn btn-primary btn-lg px-4">
+                        <i class="fas fa-user-plus me-2"></i>Começar Agora
+                    </a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg px-4">
+                        <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
+                    </a>
+                </div>
             {% else %}
-                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
-                    <i class="fas fa-chart-line me-2"></i>Ir para Dashboard
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg px-4 pulse">
+                    <i class="fas fa-chart-line me-2"></i>Acessar Dashboard
                 </a>
             {% endif %}
+            
+            <!-- Stats -->
+            <div class="row mt-5 g-4">
+                <div class="col-4">
+                    <h3 class="fw-bold" style="color: var(--primary-blue);">100%</h3>
+                    <p class="small mb-0" style="color: var(--text-muted);">Digital</p>
+                </div>
+                <div class="col-4">
+                    <h3 class="fw-bold" style="color: var(--primary-blue);">24/7</h3>
+                    <p class="small mb-0" style="color: var(--text-muted);">Acesso</p>
+                </div>
+                <div class="col-4">
+                    <h3 class="fw-bold" style="color: var(--primary-blue);">∞</h3>
+                    <p class="small mb-0" style="color: var(--text-muted);">Inovação</p>
+                </div>
+            </div>
         </div>
         <div class="col-lg-6 text-center">
-            <div class="p-5">
-                <i class="fas fa-school" style="font-size: 15rem; color: rgba(255, 255, 255, 0.8);"></i>
+            <div class="position-relative">
+                <div style="font-size: 20rem; color: var(--primary-blue); opacity: 0.1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <i class="fas fa-graduation-cap pulse" style="font-size: 15rem; color: var(--primary-blue); position: relative; z-index: 2;"></i>
             </div>
         </div>
     </div>
 
     <!-- Features -->
     <div class="row g-4 mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold mb-3">Recursos Poderosos</h2>
+            <p style="color: var(--text-muted);">Tudo que você precisa em uma única plataforma</p>
+        </div>
+        
         <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body text-center p-4">
-                    <div class="mb-3">
-                        <i class="fas fa-users" style="font-size: 4rem; color: #2563eb;"></i>
+            <div class="card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <div style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(14, 165, 233, 0.05)); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-users fa-2x" style="color: var(--primary-blue);"></i>
+                        </div>
                     </div>
-                    <h4 class="card-title fw-bold">Para Alunos</h4>
-                    <p class="card-text text-muted">
-                        Acompanhe suas notas, frequência e desempenho em todas as disciplinas.
+                    <h4 class="card-title fw-bold mb-3">Para Alunos</h4>
+                    <p class="mb-4" style="color: var(--text-muted);">
+                        Acompanhe suas notas, frequência e desempenho em tempo real.
                     </p>
                     <ul class="list-unstyled text-start">
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Visualizar notas por bimestre</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Controle de frequência</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Histórico completo</li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Boletim digital por bimestre</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Controle de frequência</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Histórico completo</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Notificações em tempo real</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
+        
         <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body text-center p-4">
-                    <div class="mb-3">
-                        <i class="fas fa-chalkboard-teacher" style="font-size: 4rem; color: #7c3aed;"></i>
+            <div class="card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <div style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(14, 165, 233, 0.05)); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chalkboard-teacher fa-2x" style="color: var(--primary-blue);"></i>
+                        </div>
                     </div>
-                    <h4 class="card-title fw-bold">Para Professores</h4>
-                    <p class="card-text text-muted">
-                        Gerencie suas turmas, lance notas e acompanhe o progresso dos alunos.
+                    <h4 class="card-title fw-bold mb-3">Para Professores</h4>
+                    <p class="mb-4" style="color: var(--text-muted);">
+                        Gerencie turmas, lance notas e acompanhe o progresso.
                     </p>
                     <ul class="list-unstyled text-start">
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Lançamento de notas</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Controle de presença</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Gestão de turmas</li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Lançamento rápido de notas</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Registro de presença</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Gestão de turmas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Relatórios detalhados</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
+        
         <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body text-center p-4">
-                    <div class="mb-3">
-                        <i class="fas fa-cogs" style="font-size: 4rem; color: #10b981;"></i>
+            <div class="card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <div style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(14, 165, 233, 0.05)); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-cogs fa-2x" style="color: var(--primary-blue);"></i>
+                        </div>
                     </div>
-                    <h4 class="card-title fw-bold">Para Administradores</h4>
-                    <p class="card-text text-muted">
-                        Controle total do sistema educacional com relatórios e estatísticas.
+                    <h4 class="card-title fw-bold mb-3">Para Administradores</h4>
+                    <p class="mb-4" style="color: var(--text-muted);">
+                        Controle total com relatórios e estatísticas avançadas.
                     </p>
                     <ul class="list-unstyled text-start">
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Gestão de usuários</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Relatórios completos</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Configurações globais</li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Gestão completa de usuários</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Dashboard analítico</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Configurações avançadas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle me-2" style="color: var(--success);"></i>
+                            <span style="color: var(--text-secondary);">Controle total do sistema</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -94,35 +174,57 @@
     </div>
 
     <!-- Stats Section -->
-    <div class="row g-4">
-        <div class="col-md-3">
-            <div class="stat-card">
-                <i class="fas fa-book" style="color: #2563eb;"></i>
-                <h3>100%</h3>
-                <p>Digital</p>
-            </div>
+    <div class="row g-4 mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold mb-3">Por que escolher o EduSystem?</h2>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6">
             <div class="stat-card">
-                <i class="fas fa-lock" style="color: #7c3aed;"></i>
+                <i class="fas fa-shield-alt"></i>
                 <h3>Seguro</h3>
-                <p>Sistema Protegido</p>
+                <p>Dados Protegidos</p>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6">
             <div class="stat-card">
-                <i class="fas fa-mobile-alt" style="color: #10b981;"></i>
+                <i class="fas fa-bolt"></i>
+                <h3>Rápido</h3>
+                <p>Alta Performance</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <i class="fas fa-mobile-alt"></i>
                 <h3>Responsivo</h3>
-                <p>Acesso em Qualquer Dispositivo</p>
+                <p>Qualquer Dispositivo</p>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6">
             <div class="stat-card">
-                <i class="fas fa-chart-line" style="color: #f59e0b;"></i>
+                <i class="fas fa-chart-line"></i>
                 <h3>Eficiente</h3>
                 <p>Gestão Completa</p>
             </div>
         </div>
     </div>
+    
+    <!-- CTA Section -->
+    {% if not user.is_authenticated %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card text-center" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark)); border: none;">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-3 text-white">Pronto para começar?</h2>
+                    <p class="mb-4 text-white" style="opacity: 0.9;">
+                        Junte-se a milhares de estudantes e professores que já usam nossa plataforma
+                    </p>
+                    <a href="{% url 'registro' %}" class="btn btn-light btn-lg px-5" style="color: var(--primary-blue); font-weight: 600;">
+                        <i class="fas fa-rocket me-2"></i>Criar Conta Gratuita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

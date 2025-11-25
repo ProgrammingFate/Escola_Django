@@ -10,109 +10,336 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #7c3aed;
-            --success-color: #10b981;
-            --danger-color: #ef4444;
-            --warning-color: #f59e0b;
-            --info-color: #06b6d4;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
+            --primary-blue: #0ea5e9;
+            --primary-blue-dark: #0284c7;
+            --primary-blue-light: #38bdf8;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-card-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border-color: #334155;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
             min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.05) 0px, transparent 50%);
         }
         
         .navbar {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
         }
         
         .navbar-brand {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-primary) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .navbar-brand i {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-blue) !important;
+            background: rgba(14, 165, 233, 0.1);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-blue) !important;
+            background: rgba(14, 165, 233, 0.15);
         }
         
         .main-content {
-            padding: 2rem 0;
+            padding: 3rem 0;
+            min-height: calc(100vh - 200px);
         }
         
         .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            overflow: hidden;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.2);
+            border-color: var(--primary-blue);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-bottom: none;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
             border: none;
-            border-radius: 10px;
-            padding: 10px 25px;
-            font-weight: 500;
+            border-radius: 12px;
+            padding: 12px 28px;
+            font-weight: 600;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.5);
+            background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue));
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+            border-radius: 12px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
         }
         
         .alert {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid;
+        }
+        
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border-left-color: var(--success);
+        }
+        
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-left-color: var(--danger);
+        }
+        
+        .alert-info {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
         }
         
         .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-light));
         }
         
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+            border-color: var(--primary-blue);
         }
         
         .stat-card i {
             font-size: 3rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .stat-card h3 {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin: 0.5rem 0;
+            color: var(--text-primary);
         }
         
         .stat-card p {
-            color: #64748b;
+            color: var(--text-muted);
             margin: 0;
+            font-weight: 500;
+        }
+        
+        .table {
+            color: var(--text-primary);
+        }
+        
+        .table thead {
+            background: var(--dark-card-hover);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
+        .table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .table tbody tr:hover {
+            background: var(--dark-card-hover);
+            transform: scale(1.01);
+        }
+        
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .bg-success {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+        }
+        
+        .bg-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+        }
+        
+        .bg-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+        }
+        
+        .bg-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark)) !important;
+        }
+        
+        .bg-info {
+            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
         }
         
         footer {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--border-color);
             padding: 2rem 0;
-            margin-top: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .form-control, .form-select {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background: var(--dark-card-hover);
+            border-color: var(--primary-blue);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        
+        .form-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue-light);
         }
     </style>
     
@@ -120,10 +347,11 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <i class="fas fa-graduation-cap me-2"></i>Sistema Escolar
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduSystem</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -131,38 +359,57 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home me-1"></i>Início</a>
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <i class="fas fa-home me-1"></i>Início
+                        </a>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-chart-line me-1"></i>Dashboard</a>
+                            <a class="nav-link" href="{% url 'dashboard' %}">
+                                <i class="fas fa-chart-line me-1"></i>Dashboard
+                            </a>
                         </li>
                         {% if user.perfil.tipo == 'aluno' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'minhas_notas' %}"><i class="fas fa-star me-1"></i>Minhas Notas</a>
+                                <a class="nav-link" href="{% url 'minhas_notas' %}">
+                                    <i class="fas fa-star me-1"></i>Notas
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'frequencia_aluno' %}"><i class="fas fa-calendar-check me-1"></i>Frequência</a>
+                                <a class="nav-link" href="{% url 'frequencia_aluno' %}">
+                                    <i class="fas fa-calendar-check me-1"></i>Frequência
+                                </a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'perfil' %}"><i class="fas fa-user me-1"></i>Perfil</a>
+                            <a class="nav-link" href="{% url 'perfil' %}">
+                                <i class="fas fa-user me-1"></i>Perfil
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-1"></i>Sair</a>
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="fas fa-sign-out-alt me-1"></i>Sair
+                            </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-1"></i>Entrar</a>
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fas fa-sign-in-alt me-1"></i>Entrar
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registro' %}"><i class="fas fa-user-plus me-1"></i>Registrar</a>
+                            <a class="nav-link btn-primary text-white ms-2" href="{% url 'registro' %}">
+                                <i class="fas fa-user-plus me-1"></i>Cadastrar
+                            </a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Spacer for fixed navbar -->
+    <div style="height: 80px;"></div>
 
     <!-- Messages -->
     {% if messages %}
@@ -184,8 +431,17 @@
     <!-- Footer -->
     <footer class="text-center">
         <div class="container">
-            <p class="mb-0 text-muted">
-                <i class="fas fa-graduation-cap me-2"></i>Sistema Escolar © 2025 | Educação de Qualidade
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--primary-blue);"></i>
+                    <h5 class="mt-2" style="color: var(--text-primary);">EduSystem</h5>
+                </div>
+            </div>
+            <p class="mb-2" style="color: var(--text-secondary);">
+                Plataforma Educacional Moderna
+            </p>
+            <p class="mb-0" style="color: var(--text-muted); font-size: 0.875rem;">
+                © 2025 EduSystem. Todos os direitos reservados.
             </p>
         </div>
     </footer>

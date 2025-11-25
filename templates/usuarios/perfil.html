@@ -4,40 +4,47 @@
 {% block title %}Meu Perfil{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container fade-in-up">
     <div class="row">
         <div class="col-lg-4 mb-4">
-            <div class="card">
+            <div class="card" style="background: var(--dark-card); border: 1px solid var(--border-color);">
                 <div class="card-body text-center p-4">
                     {% if user.perfil.foto %}
                         <img src="{{ user.perfil.foto.url }}" alt="Foto do perfil" class="rounded-circle mb-3" 
-                             width="150" height="150" style="object-fit: cover;">
+                             width="150" height="150" style="object-fit: cover; border: 3px solid var(--primary-blue);">
                     {% else %}
-                        <div class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center mb-3" 
-                             style="width: 150px; height: 150px;">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                             style="width: 150px; height: 150px; background: linear-gradient(135deg, #0ea5e9, #0284c7);">
                             <i class="fas fa-user fa-4x text-white"></i>
                         </div>
                     {% endif %}
-                    <h4 class="fw-bold">{{ user.get_full_name|default:user.username }}</h4>
-                    <p class="text-muted mb-2">@{{ user.username }}</p>
-                    <span class="badge bg-primary mb-3">{{ user.perfil.get_tipo_display }}</span>
+                    <h4 class="fw-bold mb-2" style="color: var(--text-primary);">{{ user.get_full_name|default:user.username }}</h4>
+                    <p class="text-muted mb-3">@{{ user.username }}</p>
                     
-                    <hr>
+                    {% if user.perfil.tipo == 'aluno' %}
+                        <span class="badge mb-4" style="background: #0ea5e9; padding: 0.5rem 1rem;">{{ user.perfil.get_tipo_display }}</span>
+                    {% elif user.perfil.tipo == 'professor' %}
+                        <span class="badge mb-4" style="background: #10b981; padding: 0.5rem 1rem;">{{ user.perfil.get_tipo_display }}</span>
+                    {% else %}
+                        <span class="badge mb-4" style="background: #8b5cf6; padding: 0.5rem 1rem;">{{ user.perfil.get_tipo_display }}</span>
+                    {% endif %}
+                    
+                    <hr style="border-color: var(--border-color);">
                     
                     <div class="text-start">
-                        <p class="mb-2">
-                            <i class="fas fa-envelope me-2 text-primary"></i>
+                        <p class="mb-3" style="color: var(--text-primary);">
+                            <i class="fas fa-envelope me-2" style="color: var(--primary-blue);"></i>
                             {{ user.email }}
                         </p>
                         {% if user.perfil.telefone %}
-                            <p class="mb-2">
-                                <i class="fas fa-phone me-2 text-primary"></i>
+                            <p class="mb-3" style="color: var(--text-primary);">
+                                <i class="fas fa-phone me-2" style="color: var(--primary-blue);"></i>
                                 {{ user.perfil.telefone }}
                             </p>
                         {% endif %}
                         {% if user.perfil.data_nascimento %}
-                            <p class="mb-2">
-                                <i class="fas fa-birthday-cake me-2 text-primary"></i>
+                            <p class="mb-3" style="color: var(--text-primary);">
+                                <i class="fas fa-birthday-cake me-2" style="color: var(--primary-blue);"></i>
                                 {{ user.perfil.data_nascimento|date:"d/m/Y" }}
                             </p>
                         {% endif %}
@@ -47,9 +54,9 @@
         </div>
         
         <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">
+            <div class="card" style="background: var(--dark-card); border: 1px solid var(--border-color);">
+                <div class="card-header" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); border: none;">
+                    <h4 class="mb-0 text-white">
                         <i class="fas fa-user-edit me-2"></i>Editar Perfil
                     </h4>
                 </div>
@@ -57,14 +64,14 @@
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         
-                        <h5 class="mb-3">
+                        <h5 class="mb-4" style="color: var(--text-primary);">
                             <i class="fas fa-user me-2"></i>Informações Pessoais
                         </h5>
                         {{ u_form|crispy }}
                         
-                        <hr class="my-4">
+                        <hr class="my-4" style="border-color: var(--border-color);">
                         
-                        <h5 class="mb-3">
+                        <h5 class="mb-4" style="color: var(--text-primary);">
                             <i class="fas fa-id-card me-2"></i>Informações Adicionais
                         </h5>
                         {{ p_form|crispy }}

@@ -3,24 +3,27 @@
 {% block title %}Dashboard Aluno{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container fade-in-up">
+    <!-- Welcome Card -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card">
-                <div class="card-body">
+            <div class="card" style="border: none; background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));">
+                <div class="card-body p-4">
                     <div class="d-flex align-items-center">
-                        <div class="me-3">
+                        <div class="me-4">
                             {% if user.perfil.foto %}
-                                <img src="{{ user.perfil.foto.url }}" alt="Foto" class="rounded-circle" width="80" height="80" style="object-fit: cover;">
+                                <img src="{{ user.perfil.foto.url }}" alt="Foto" class="rounded-circle" 
+                                     width="90" height="90" style="object-fit: cover; border: 4px solid rgba(255,255,255,0.3);">
                             {% else %}
-                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-user fa-2x text-white"></i>
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 90px; height: 90px; background: rgba(255,255,255,0.2);">
+                                    <i class="fas fa-user fa-3x text-white"></i>
                                 </div>
                             {% endif %}
                         </div>
                         <div>
-                            <h2 class="mb-1">Olá, {{ user.get_full_name|default:user.username }}!</h2>
-                            <p class="text-muted mb-0">
+                            <h2 class="mb-2 fw-bold text-white">Olá, {{ user.get_full_name|default:user.username }}!</h2>
+                            <p class="mb-0 text-white" style="opacity: 0.9;">
                                 <i class="fas fa-graduation-cap me-2"></i>{{ user.perfil.get_tipo_display }}
                             </p>
                         </div>
@@ -31,31 +34,31 @@
     </div>
 
     <!-- Quick Actions -->
-    <div class="row g-4 mb-4">
+    <div class="row g-4 mb-5">
         <div class="col-md-4">
             <a href="{% url 'minhas_notas' %}" class="text-decoration-none">
-                <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                    <i class="fas fa-star"></i>
-                    <h3>Minhas Notas</h3>
-                    <p style="color: rgba(255,255,255,0.8);">Ver Boletim Completo</p>
+                <div class="stat-card" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); border: none;">
+                    <i class="fas fa-star" style="color: white;"></i>
+                    <h3 style="color: white;">Minhas Notas</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Ver Boletim Completo</p>
                 </div>
             </a>
         </div>
         <div class="col-md-4">
             <a href="{% url 'frequencia_aluno' %}" class="text-decoration-none">
-                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>Frequência</h3>
-                    <p style="color: rgba(255,255,255,0.8);">Ver Presenças</p>
+                <div class="stat-card" style="background: linear-gradient(135deg, #10b981, #059669); border: none;">
+                    <i class="fas fa-calendar-check" style="color: white;"></i>
+                    <h3 style="color: white;">Frequência</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Ver Presenças</p>
                 </div>
             </a>
         </div>
         <div class="col-md-4">
             <a href="{% url 'perfil' %}" class="text-decoration-none">
-                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-                    <i class="fas fa-user-edit"></i>
-                    <h3>Meu Perfil</h3>
-                    <p style="color: rgba(255,255,255,0.8);">Editar Informações</p>
+                <div class="stat-card" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); border: none;">
+                    <i class="fas fa-user-edit" style="color: white;"></i>
+                    <h3 style="color: white;">Meu Perfil</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Editar Informações</p>
                 </div>
             </a>
         </div>
@@ -63,32 +66,35 @@
 
     <!-- Minhas Turmas -->
     <div class="row">
-        <div class="col-12">
-            <h3 class="text-white mb-4">
-                <i class="fas fa-users me-2"></i>Minhas Turmas
+        <div class="col-12 mb-4">
+            <h3 class="fw-bold" style="color: var(--text-primary);">
+                <i class="fas fa-users me-2" style="color: var(--primary-blue);"></i>Minhas Turmas
             </h3>
         </div>
         {% if turmas %}
             {% for turma in turmas %}
                 <div class="col-md-6 mb-4">
                     <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">
+                        <div class="card-header text-white" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark)); border: none;">
+                            <h5 class="mb-0 fw-bold">
                                 <i class="fas fa-users me-2"></i>{{ turma.nome }}
                             </h5>
                         </div>
                         <div class="card-body">
-                            <p class="mb-2">
-                                <strong>Série:</strong> {{ turma.get_serie_display }}
-                            </p>
-                            <p class="mb-2">
-                                <strong>Turno:</strong> {{ turma.get_turno_display }}
-                            </p>
-                            <p class="mb-3">
+                            <div class="mb-3">
+                                <span class="badge bg-primary me-2">
+                                    <i class="fas fa-graduation-cap me-1"></i>{{ turma.get_serie_display }}
+                                </span>
+                                <span class="badge bg-info">
+                                    <i class="fas fa-clock me-1"></i>{{ turma.get_turno_display }}
+                                </span>
+                            </div>
+                            <p class="mb-3" style="color: var(--text-secondary);">
+                                <i class="fas fa-calendar-alt me-2"></i>
                                 <strong>Ano Letivo:</strong> {{ turma.ano_letivo }}
                             </p>
-                            <a href="{% url 'turma_detalhe' turma.pk %}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-eye me-1"></i>Ver Detalhes
+                            <a href="{% url 'turma_detalhe' turma.pk %}" class="btn btn-primary w-100">
+                                <i class="fas fa-eye me-2"></i>Ver Detalhes
                             </a>
                         </div>
                     </div>
@@ -96,11 +102,11 @@
             {% endfor %}
         {% else %}
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body text-center py-5">
-                        <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
-                        <h5 class="text-muted">Você ainda não está matriculado em nenhuma turma</h5>
-                        <p class="text-muted">Entre em contato com a secretaria</p>
+                <div class="card text-center">
+                    <div class="card-body py-5">
+                        <i class="fas fa-info-circle fa-4x mb-3" style="color: var(--text-muted);"></i>
+                        <h5 style="color: var(--text-secondary);">Você ainda não está matriculado em nenhuma turma</h5>
+                        <p style="color: var(--text-muted);">Entre em contato com a secretaria</p>
                     </div>
                 </div>
             </div>

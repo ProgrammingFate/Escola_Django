@@ -3,25 +3,23 @@
 {% block title %}{{ turma.nome }} - Detalhes{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row mb-4">
+<div class="container fade-in-up">
+    <div class="row mb-5">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">
-                        <i class="fas fa-users me-2"></i>{{ turma.nome }}
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
+            <div class="card" style="border: none; background: linear-gradient(135deg, #0ea5e9, #0284c7);">
+                <div class="card-body p-4">
+                    <h2 class="fw-bold text-white mb-3">
+                        <i class="fas fa-users me-3"></i>{{ turma.nome }}
+                    </h2>
+                    <div class="row text-white">
                         <div class="col-md-4">
-                            <p><strong>Série:</strong> {{ turma.get_serie_display }}</p>
+                            <p class="mb-2"><i class="fas fa-graduation-cap me-2"></i><strong>Série:</strong> {{ turma.get_serie_display }}</p>
                         </div>
                         <div class="col-md-4">
-                            <p><strong>Turno:</strong> {{ turma.get_turno_display }}</p>
+                            <p class="mb-2"><i class="fas fa-clock me-2"></i><strong>Turno:</strong> {{ turma.get_turno_display }}</p>
                         </div>
                         <div class="col-md-4">
-                            <p><strong>Ano Letivo:</strong> {{ turma.ano_letivo }}</p>
+                            <p class="mb-2"><i class="fas fa-calendar me-2"></i><strong>Ano Letivo:</strong> {{ turma.ano_letivo }}</p>
                         </div>
                     </div>
                 </div>
@@ -32,26 +30,30 @@
     <!-- Disciplinas da Turma -->
     <div class="row">
         <div class="col-12">
-            <h4 class="text-white mb-3">
+            <h4 class="mb-4" style="color: var(--text-primary);">
                 <i class="fas fa-book me-2"></i>Disciplinas
             </h4>
         </div>
         {% if disciplinas %}
             {% for td in disciplinas %}
-                <div class="col-md-6 col-lg-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="fas fa-book me-2" style="color: {{ td.disciplina.cor|default:'#2563eb' }};"></i>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card hover-lift" style="background: var(--dark-card); border: 1px solid {{ td.disciplina.cor|default:'rgba(14, 165, 233, 0.2)' }};">
+                        <div class="card-body p-4">
+                            <div class="mb-3" style="display: inline-block; padding: 1rem; background: {{ td.disciplina.cor|default:'#0ea5e9' }}15; border-radius: 0.5rem;">
+                                <i class="{{ td.disciplina.icone|default:'fas fa-book' }} fa-2x" style="color: {{ td.disciplina.cor|default:'#0ea5e9' }};"></i>
+                            </div>
+                            <h5 class="fw-bold mb-3" style="color: var(--text-primary);">
                                 {{ td.disciplina.nome }}
                             </h5>
                             {% if td.professor %}
-                                <p class="mb-2">
+                                <p class="mb-2" style="color: var(--text-primary);">
+                                    <i class="fas fa-chalkboard-teacher me-2" style="color: {{ td.disciplina.cor|default:'#0ea5e9' }};"></i>
                                     <strong>Professor:</strong> {{ td.professor.get_full_name }}
                                 </p>
                             {% endif %}
                             <p class="text-muted mb-0">
-                                <small>Carga horária: {{ td.disciplina.carga_horaria }}h/semana</small>
+                                <i class="fas fa-clock me-2"></i>
+                                <small>{{ td.disciplina.carga_horaria }}h/semana</small>
                             </p>
                         </div>
                     </div>
@@ -59,9 +61,11 @@
             {% endfor %}
         {% else %}
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body text-center py-4">
-                        <i class="fas fa-info-circle fa-2x text-muted mb-3"></i>
+                <div class="card" style="background: var(--dark-card); border: 1px solid var(--border-color);">
+                    <div class="card-body text-center py-5">
+                        <div class="mb-3" style="display: inline-block; padding: 1.5rem; background: rgba(14, 165, 233, 0.1); border-radius: 50%;">
+                            <i class="fas fa-info-circle fa-2x" style="color: var(--primary-blue);"></i>
+                        </div>
                         <p class="text-muted mb-0">Nenhuma disciplina cadastrada para esta turma</p>
                     </div>
                 </div>
