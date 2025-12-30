@@ -5,8 +5,8 @@
 {% block content %}
 <div class="container">
     <!-- Hero Section -->
-    <div class="row align-items-center mb-5 fade-in-up" style="min-height: 60vh;">
-        <div class="col-lg-6">
+    <div class="row align-items-center mb-5 fade-in-up" style="min-height: 70vh; padding: 2rem 0;">
+        <div class="col-lg-6 mb-4 mb-lg-0">
             <div class="mb-4">
                 <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1rem;">
                     <i class="fas fa-rocket me-2"></i>Plataforma Educacional Moderna
@@ -23,7 +23,7 @@
                 Acompanhe notas, frequência e desempenho em tempo real.
             </p>
             {% if not user.is_authenticated %}
-                <div class="d-flex gap-3 mb-4">
+                <div class="d-flex gap-3 mb-4 flex-wrap">
                     <a href="{% url 'registro' %}" class="btn btn-primary btn-lg px-4">
                         <i class="fas fa-user-plus me-2"></i>Começar Agora
                     </a>
@@ -53,12 +53,130 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-6 text-center">
             <div class="position-relative">
-                <div style="font-size: 20rem; color: var(--primary-blue); opacity: 0.1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                    <i class="fas fa-graduation-cap"></i>
+                <i class="fas fa-graduation-cap pulse" style="font-size: 12rem; color: var(--primary-blue);"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Galeria de Imagens -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3" style="color: var(--text-primary);">
+                <i class="fas fa-images me-3" style="color: var(--primary-blue);"></i>
+                Nossa Escola em Imagens
+            </h2>
+            <p style="color: var(--text-muted); font-size: 1.2rem;">Espaços modernos e tecnológicos para uma educação de excelência</p>
+        </div>
+        
+        <!-- Grid de Imagens Estilo Magazine -->
+        <div class="col-lg-6 mb-4">
+            <div class="card hover-lift h-100" style="overflow: hidden; border: 2px solid rgba(14, 165, 233, 0.3);">
+                <div class="position-relative">
+                    <img src="/media/escola/quadra_esportes.jpg" alt="Quadra de Esportes" 
+                         class="card-img-top" style="height: 400px; object-fit: cover; filter: brightness(0.9);">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge" style="background: rgba(14, 165, 233, 0.9); font-size: 1rem; padding: 0.5rem 1rem;">
+                            <i class="fas fa-basketball-ball me-2"></i>Esportes
+                        </span>
+                    </div>
                 </div>
-                <i class="fas fa-graduation-cap pulse" style="font-size: 15rem; color: var(--primary-blue); position: relative; z-index: 2;"></i>
+                <div class="card-body p-4" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.05));">
+                    <h3 class="card-title fw-bold mb-3" style="color: var(--text-primary);">
+                        🏀 Esportes e Atividades Físicas
+                    </h3>
+                    <p class="card-text mb-3" style="color: var(--text-secondary); font-size: 1.1rem;">
+                        Quadras poliesportivas modernas equipadas para desenvolvimento físico completo
+                    </p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Futebol, Vôlei e Basquete</span></li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Treinos e Competições</span></li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Trabalho em Equipe</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card hover-lift h-100" style="overflow: hidden; border: 2px solid rgba(16, 185, 129, 0.3);">
+                <div class="position-relative">
+                    <img src="/media/escola/estudantes.jpg" alt="Estudantes" 
+                         class="card-img-top" style="height: 400px; object-fit: cover; filter: brightness(0.9);">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge" style="background: rgba(16, 185, 129, 0.9); font-size: 1rem; padding: 0.5rem 1rem;">
+                            <i class="fas fa-graduation-cap me-2"></i>Educação
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body p-4" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));">
+                    <h3 class="card-title fw-bold mb-3" style="color: var(--text-primary);">
+                        👨‍🎓 Aprendizado Moderno e Eficiente
+                    </h3>
+                    <p class="card-text mb-3" style="color: var(--text-secondary); font-size: 1.1rem;">
+                        Metodologias inovadoras que preparam alunos para os desafios do futuro
+                    </p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Aulas Interativas</span></li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Projetos Práticos</span></li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Acompanhamento Individual</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card hover-lift h-100" style="overflow: hidden; border: 2px solid rgba(139, 92, 246, 0.3);">
+                <div class="position-relative">
+                    <img src="/media/escola/tecnologia.jpg" alt="Tecnologia" 
+                         class="card-img-top" style="height: 400px; object-fit: cover; filter: brightness(0.9);">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge" style="background: rgba(139, 92, 246, 0.9); font-size: 1rem; padding: 0.5rem 1rem;">
+                            <i class="fas fa-microchip me-2"></i>Tech
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body p-4" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));">
+                    <h3 class="card-title fw-bold mb-3" style="color: var(--text-primary);">
+                        💻 Tecnologia de Ponta
+                    </h3>
+                    <p class="card-text mb-3" style="color: var(--text-secondary); font-size: 1.1rem;">
+                        Laboratórios equipados com as mais modernas tecnologias educacionais
+                    </p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Computadores de Última Geração</span></li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Programação e Robótica</span></li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Conectividade Total</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card hover-lift h-100" style="overflow: hidden; border: 2px solid rgba(245, 158, 11, 0.3);">
+                <div class="position-relative">
+                    <img src="/media/escola/biblioteca.jpg" alt="Biblioteca" 
+                         class="card-img-top" style="height: 400px; object-fit: cover; filter: brightness(0.9);">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge" style="background: rgba(245, 158, 11, 0.9); font-size: 1rem; padding: 0.5rem 1rem;">
+                            <i class="fas fa-book me-2"></i>Biblioteca
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body p-4" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));">
+                    <h3 class="card-title fw-bold mb-3" style="color: var(--text-primary);">
+                        📚 Biblioteca Digital Completa
+                    </h3>
+                    <p class="card-text mb-3" style="color: var(--text-secondary); font-size: 1.1rem;">
+                        Acervo vasto com acesso digital a milhares de títulos e recursos
+                    </p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Milhares de E-books</span></li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Plataformas Online</span></li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--success);"></i><span style="color: var(--text-secondary);">Pesquisa Acadêmica</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
